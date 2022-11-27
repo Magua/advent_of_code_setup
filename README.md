@@ -22,7 +22,7 @@ December first is prepared with:
 - `test/dec01tests.rs`
 - Added row for dec01 module in `src/lib.rs`
 
-For December 2 and forward just create the tree equivalent files above and add module in `src/lib.rs`.
+For December 2 and forward just create the three equivalent files above and add module in `src/lib.rs`.
 
 ## Todo
 
