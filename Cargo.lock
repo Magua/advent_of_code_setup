@@ -6,6 +6,7 @@ version = 3
 name = "advent_of_code_setup"
 version = "0.1.0"
 dependencies = [
+ "sliding_windows",
  "tokio",
  "tokio-test",
 ]
@@ -193,6 +194,12 @@ checksum = "e51e73328dc4ac0c7ccbda3a494dfa03df1de2f46018127f60c693f2648455b0"
 dependencies = [
  "libc",
 ]
+
+[[package]]
+name = "sliding_windows"
+version = "2.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "15f29b3ea40cce3f6d44737b147d857d81ee77fe4d34029c80c5a36576cd1e3f"
 
 [[package]]
 name = "smallvec"

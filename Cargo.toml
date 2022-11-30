@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 tokio = { version = "1.22", features = ["full"] }
 tokio-test = "*"
+sliding_windows = "2.0"
