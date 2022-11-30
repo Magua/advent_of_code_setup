@@ -28,18 +28,19 @@ pub async fn count_windows_increased(filepath: &str) -> Result<i32, Box<dyn std:
     let reader = BufReader::new(file);
     let mut storage: Storage<i32> = Storage::new(3);
 
-    let what = reader.lines().map(|l| l.unwrap().parse::<i32>().unwrap());
-    let ove = what.sliding_windows(&mut storage);
-    let xyz = ove.fold((0, i32::MAX), |state, w| {
-        let (increased, previous) = state;
-        let depth: i32 = w.iter().sum();
-        if depth > previous {
-            (increased + 1, depth)
-        }
-        else {
-            (increased, depth)
-        }
-    });
+    let result = reader
+        .lines()
+        .map(|l| l.unwrap().parse::<i32>().unwrap())
+        .sliding_windows(&mut storage)
+        .fold((0, i32::MAX), |state, w| {
+            let (increased, previous) = state;
+            let depth: i32 = w.iter().sum();
+            if depth > previous {
+                (increased + 1, depth)
+            } else {
+                (increased, depth)
+            }
+        });
 
-    Ok(xyz.0)
+    Ok(result.0)
 }
