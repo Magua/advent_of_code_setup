@@ -1,43 +1,46 @@
-
-#[path="utils/mod.rs"]
-mod utils;
+use std::error::Error;
 
 use advent_of_code_setup::dec00::solution::*;
 
 #[test]
 fn verify_echo_simple() {
     let result = echo_simple("a string");
+
     assert_eq!(result, "a string");
 }
 
 #[test]
-fn verify_error_handling_ok() {
-    match echo_error_handling("a string") {
-        Ok(result) => assert_eq!(result, "a string"),
-        _ => panic!("Expected a string"),
-    }
+fn verify_error_handling_ok() -> Result<(), Box<dyn Error>> {
+    let result = echo_error_handling("a string")?;
+
+    assert_eq!(result, "a string");
+
+    Ok(())
 }
 
 #[test]
-fn verify_error_handling_not_ok() {
-    match echo_error_handling("profanity") {
-        Err(result) => assert_eq!(result, "oh dear"),
-        _ => panic!("Should have failed"),
-    }
+fn verify_error_handling_not_ok() -> Result<(), Box<dyn Error>> {
+    let result = echo_error_handling("profanity").unwrap_err();
+
+    assert_eq!(result, "oh dear");
+
+    Ok(())
 }
 
-#[test]
-fn verify_async_ok() {
-    match aw!(asynch_echo("a string")) {
-        Ok(result) => assert_eq!(result, "a string"),
-        _ => panic!("Expected a string"),
-    }
+#[tokio::test]
+async fn verify_async_ok() -> Result<(), Box<dyn Error>> {
+    let result = asynch_echo("a string").await?;
+
+    assert_eq!(result, "a string");
+
+    Ok(())
 }
 
-#[test]
-fn verify_count_rows_containing() {
-    match aw!(count_rows_containing("./src/dec00/dec00.txt", "l")) {
-        Ok(result) => assert_eq!(result, 2),
-        Err(r) => panic!("Expected 2, got {}", r),
-    }
+#[tokio::test]
+async fn verify_count_rows_containing() -> Result<(), Box<dyn Error>> {
+    let result = count_rows_containing("./src/dec00/dec00.txt", "l").await?;
+
+    assert_eq!(result, 2);
+
+    Ok(())
 }

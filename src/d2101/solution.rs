@@ -14,7 +14,6 @@ pub async fn count_rows_increased(filepath: &str) -> Result<i32, Box<dyn std::er
             increased += 1;
         }
         previous = depth;
-        println!("s: {}, d: {}", depth, previous);
     }
 
     Ok(increased)

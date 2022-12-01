@@ -1,38 +1,40 @@
 
-#[path="utils/mod.rs"]
-mod utils;
-
 use advent_of_code_setup::d2101::solution::*;
+use std::error::Error;
 
-#[test]
-fn verify_example_input() {
-    match aw!(count_rows_increased("./src/d2101/example_input")) {
-        Ok(result) => assert_eq!(result, 7),
-        Err(e) => panic!("{}", e)
-    }
+#[tokio::test]
+async fn verify_example_input() -> Result<(), Box<dyn Error>> {
+    let result = count_rows_increased("./src/d2101/example_input").await?;
+
+    assert_eq!(result, 7);
+
+    Ok(())
 }
 
-#[test]
-fn verify_input() {
-    match aw!(count_rows_increased("./src/d2101/input")) {
-        Ok(result) => assert_eq!(result, 1387),
-        Err(e) => panic!("{}", e)
-    }
+#[tokio::test]
+async fn verify_input() -> Result<(), Box<dyn Error>> {
+    let result = count_rows_increased("./src/d2101/input").await?;
+    
+    assert_eq!(result, 1387);
+
+    Ok(())
 }
 
-#[test]
-fn verify_sliding_window_example() {
-    match aw!(count_windows_increased("./src/d2101/example_input")) {
-        Ok(result) => assert_eq!(result, 5),
-        Err(e) => panic!("{}", e)
-    }
+#[tokio::test]
+async fn verify_sliding_window_example() -> Result<(), Box<dyn Error>> {
+    let result = count_windows_increased("./src/d2101/example_input").await?;
+    
+    assert_eq!(result, 5);
+    
+    Ok(())
 }
 
-#[test]
-fn verify_sliding_window() {
-    match aw!(count_windows_increased("./src/d2101/input")) {
-        Ok(result) => assert_eq!(result, 1362),
-        Err(e) => panic!("{}", e)
-    }
+#[tokio::test]
+async fn verify_sliding_window() -> Result<(), Box<dyn Error>> {
+    let result = count_windows_increased("./src/d2101/input").await?;
+    
+    assert_eq!(result, 1362);
+
+    Ok(())
 }
 
